@@ -1,0 +1,22 @@
+class Solution:
+    def spiralMatrixIII(self, rows: int, cols: int, rStart: int, cStart: int) -> List[List[int]]:
+        dirs = [(0, 1), (1, 0), (0, -1), (-1, 0)] 
+        steps = 1
+        i, j = rStart, cStart  
+        dir_idx = 0  
+        res = [[i, j]]
+    
+        while len(res) < rows * cols:
+            for _ in range(2):
+                for _ in range(steps):
+                    i += dirs[dir_idx][0]
+                    j += dirs[dir_idx][1]
+                
+                    if 0 <= i < rows and 0 <= j < cols:
+                        res.append([i, j])
+            
+                dir_idx = (dir_idx + 1) % 4
+        
+            steps += 1
+    
+        return res
